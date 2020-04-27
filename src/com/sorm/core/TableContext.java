@@ -71,7 +71,7 @@ public class TableContext {
         }
 
         //更新类结构
-        updateJavaPOFile();
+        //updateJavaPOFile();
 
         //加载PO包下类放入poClassTableMap中
         loadPOTables();
@@ -104,8 +104,8 @@ public class TableContext {
         return tables;
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         Map<String,TableInfo> tables = getTableInfo();
         System.out.println(tables);
-    }
+    }*/
 }

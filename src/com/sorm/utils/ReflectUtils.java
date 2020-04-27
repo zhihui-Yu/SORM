@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
  * @Date 2020/4/25 14:03
  * @Version 1.0
  */
+@SuppressWarnings("all")
 public class ReflectUtils {
     /**
      * 调用object 对象对应属性的FieldName的get方法
@@ -17,14 +18,16 @@ public class ReflectUtils {
      */
     public static Object invokeGet(String fieldName, Object object) {
         try {
-            Class c = object.getClass();
-            Method method = c.getDeclaredMethod("get" +
-                    StringUtils.firstChar2UpperCase(fieldName), (Class<?>) null);
-            return method.invoke(object, (Object) null);
+            if (fieldName != null ) {
+                Class c = object.getClass();
+                Method method = c.getDeclaredMethod("get" +
+                        StringUtils.firstChar2UpperCase(fieldName), null);
+                return method.invoke(object, null);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
     /**
@@ -35,10 +38,12 @@ public class ReflectUtils {
      */
     public static void invokeSet(Object object, String columnName, Object columnValue) {
         try {
-            Class c = object.getClass();
-            Method method = c.getDeclaredMethod("set" +
-                    StringUtils.firstChar2UpperCase(columnName), columnValue.getClass());
-            method.invoke(object, columnValue);
+            if(columnValue != null ) {
+                Class c = object.getClass();
+                Method method = c.getDeclaredMethod("set" +
+                        StringUtils.firstChar2UpperCase(columnName), columnValue.getClass());
+                method.invoke(object, columnValue);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

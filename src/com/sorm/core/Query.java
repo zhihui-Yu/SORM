@@ -206,7 +206,7 @@ public abstract class Query implements Cloneable{
      */
     public Object queryRow(String sql, Class clazz, Object[] params) {
         List list = queryRows(sql, clazz, params);
-        return (list==null && list.size() < 1) ? null:list.get(0);
+        return (list==null || list.size() < 1) ? null:list.get(0);
     }
 
     /**
