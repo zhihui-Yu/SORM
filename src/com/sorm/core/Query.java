@@ -79,7 +79,8 @@ public abstract class Query implements Cloneable{
     /**
      * 将一个对象存储到数据库中
      * 把对象中不为null的属性往数据库中存储。为null则放0
-     * @param object    要存储的对象
+     * @param object 要存储的数据所封装的对象
+     * @return sql语句影响的行数
      */
     public int insert(Object object){
         //获取class对象
