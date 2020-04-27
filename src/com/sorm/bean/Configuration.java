@@ -42,7 +42,22 @@ public class Configuration {
      */
     private String  poPackage;
 
-    public Configuration(String driver, String url, String user, String pwd, String usingDB, String srcPath, String poPackage) {
+    /**
+     * 项目使用的查询类是哪一个
+     */
+    private String queryClass;
+
+    /**
+     * 最小连接对象池数量
+     */
+    private Integer poolMinSize;
+
+    /**
+     * 最大连接池对象数量
+     */
+    private Integer poolMaxSize;
+
+    public Configuration(String driver, String url, String user, String pwd, String usingDB, String srcPath, String poPackage, String queryClass, int poolMinSize, int poolMaxSize) {
         this.driver = driver;
         this.url = url;
         this.user = user;
@@ -50,6 +65,33 @@ public class Configuration {
         this.usingDB = usingDB;
         this.srcPath = srcPath;
         this.poPackage = poPackage;
+        this.queryClass = queryClass;
+        this.poolMinSize = poolMinSize;
+        this.poolMaxSize = poolMaxSize;
+    }
+
+    public Integer getPoolMinSize() {
+        return poolMinSize;
+    }
+
+    public void setPoolMinSize(int poolMinSize) {
+        this.poolMinSize = poolMinSize;
+    }
+
+    public Integer getPoolMaxSize() {
+        return poolMaxSize;
+    }
+
+    public void setPoolMaxSize(int poolMaxSize) {
+        this.poolMaxSize = poolMaxSize;
+    }
+
+    public String getQueryClass() {
+        return queryClass;
+    }
+
+    public void setQueryClass(String queryClass) {
+        this.queryClass = queryClass;
     }
 
     public String getDriver() {

@@ -18,12 +18,29 @@ public class ReflectUtils {
     public static Object invokeGet(String fieldName, Object object) {
         try {
             Class c = object.getClass();
-            Method method = c.getMethod("get" +
-                    StringUtils.firstChar2UpperCase(fieldName), null);
-            return method.invoke(object, null);
+            Method method = c.getDeclaredMethod("get" +
+                    StringUtils.firstChar2UpperCase(fieldName), (Class<?>) null);
+            return method.invoke(object, (Object) null);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * 调用object 对象对应属性的FieldName的set方法
+     * @param object 调用的对象
+     * @param columnName 列名
+     * @param columnValue 列的值
+     */
+    public static void invokeSet(Object object, String columnName, Object columnValue) {
+        try {
+            Class c = object.getClass();
+            Method method = c.getDeclaredMethod("set" +
+                    StringUtils.firstChar2UpperCase(columnName), columnValue.getClass());
+            method.invoke(object, columnValue);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
